@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+    <body>
+        <menu name="Project Documentation">
+            <item name="Project Information" href="project-info.html" collapse="true">
+                <item name="About" href="index.html" />
+                <item name="Dependency Information" href="dependency-info.html" />
+                <item name="Plugin Management" href="plugin-management.html" />
+                <item name="Plugins" href="plugins.html" />
+                <item name="Summary" href="summary.html" />
+                <item name="Team" href="team.html" />
+            </item>
+            <item name="Project Reports" href="project-reports.html" collapse="true">
+                <item name="Ktlint" href="ktlint.html" />
+                <item name="KDoc" href="dokka/index.html" />
+            </item>
+        </menu>
+    </body>
+</project>
