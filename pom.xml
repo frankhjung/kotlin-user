@@ -22,6 +22,17 @@
             <timezone>+10</timezone>
         </developer>
     </developers>
+    <scm>
+        <connection>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</connection>
+        <developerConnection>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</developerConnection>
+        <url>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</url>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>local</id>
+            <url>file://${basedir}/target/site</url>
+        </site>
+    </distributionManagement>
     <properties>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
@@ -105,6 +116,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.9.1</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>target/site</outputDirectory>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
