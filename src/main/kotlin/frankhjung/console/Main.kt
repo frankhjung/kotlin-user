@@ -1,18 +1,27 @@
-package com.marlo.console
+package frankhjung.console
+
+import kotlin.system.exitProcess
 
 /**
- * Process command line arguments or show usage message.
- * @param args arguments to process
+ * Show command line arguments or show usage message.
+ * @param args arguments to show
  */
-fun processArgs(args: Array<String>) {
+fun showArgs(args: Array<String>) {
     when (args.size) {
-        0 -> println("Usage: main arg1 arg2 arg3")
-        else -> showArgs(args)
+        0 -> {
+            println("Usage: main arg1 arg2 arg3")
+            exitProcess(1)
+        }
+        else -> {
+            println("Got arguments:")
+            println(processArgs(args.toList()))
+            exitProcess(0)
+        }
     }
 }
 
 /**
- * Show arguments.
+ * Process command line arguments.
  *
  * Other ways to loop through array lists:
  *
@@ -26,9 +35,8 @@ fun processArgs(args: Array<String>) {
  *
  * @param args arguments to show
  */
-fun showArgs(args: Array<String>) {
-    println("Got arguments:\n")
-    args.forEach { arg -> println(arg) }
+fun processArgs(args: List<String>): String {
+    return args.joinToString()
 }
 
 /**
@@ -36,5 +44,5 @@ fun showArgs(args: Array<String>) {
  * @param args command line arguments
  */
 fun main(args: Array<String>) {
-    processArgs(args)
+    showArgs(args)
 }

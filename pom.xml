@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.marlo</groupId>
+    <groupId>frankhjung</groupId>
     <artifactId>consoleApp</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>consoleApp</name>
     <description>Small Kotlin project example</description>
-    <url>https://gitlab.com/theMarloGroup/training/students/fjung/kotlin-console/-/blob/develop/README.md</url>
+    <url>https://github.com/frankhjung/kotlin-consoleapp/blob/master/README.md</url>
     <developers>
         <developer>
             <id>frank</id>
             <name>Frank H Jung</name>
-            <email>frank.jung@marlo.com.au</email>
-            <url>http://marlo.com.au</url>
-            <organization>The Marlo Group</organization>
-            <organizationUrl>http://marlo.com.au</organizationUrl>
+            <email>frankhjung@linux.com</email>
+            <url>https://github.com/frankhjung</url>
+            <organization>Frank H Jung</organization>
+            <organizationUrl>https://github.com/frankhjung</organizationUrl>
             <roles>
                 <role>consultant</role>
             </roles>
@@ -34,9 +34,12 @@
         </site>
     </distributionManagement>
     <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin.version>1.4.32</kotlin.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -49,6 +52,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
