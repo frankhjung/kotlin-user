@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>frankhjung</groupId>
-    <artifactId>consoleApp</artifactId>
+    <artifactId>create-user-id</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>consoleApp</name>
+    <name>createUserId</name>
     <description>Small Kotlin project example</description>
-    <url>https://github.com/frankhjung/kotlin-consoleapp/blob/master/README.md</url>
+    <url>https://github.com/frankhjung/kotlin-user/blob/master/README.md</url>
     <developers>
         <developer>
             <id>frank</id>
@@ -23,9 +23,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</connection>
-        <developerConnection>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</developerConnection>
-        <url>scm:git:git@github.com:frankhjung/kotlin-consoleapp.git</url>
+        <connection>scm:git:git@github.com:frankhjung/kotlin-user.git</connection>
+        <developerConnection>scm:git:git@github.com:frankhjung/kotlin-user.git</developerConnection>
+        <url>scm:git:git@github.com:frankhjung/kotlin-user.git</url>
     </scm>
     <distributionManagement>
         <site>
@@ -42,9 +42,41 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>io.github.microutils</groupId>
+            <artifactId>kotlin-logging</artifactId>
+            <version>1.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.15.Final</version>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
-            <version>${kotlin.version}</version>
+            <version>1.4.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-cli-jvm</artifactId>
+            <version>0.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-testing</artifactId>
+            <version>5.2.15.Final</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -61,8 +93,9 @@
     </dependencies>
     <repositories>
         <repository>
-            <id>mavenCentral</id>
-            <url>https://repo1.maven.org/maven2/</url>
+            <id>kotlinx</id>
+            <name>kotlinx</name>
+            <url>https://kotlin.bintray.com/kotlinx/</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -140,7 +173,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>com.marlo.console.MainKt</mainClass>
+                    <mainClass>console.CreateUserIdKt</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -173,7 +206,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
+                <version>1.4.32</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -190,6 +223,18 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-noarg</artifactId>
+                        <version>1.4.32</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <compilerPlugins>
+                        <plugin>jpa</plugin>
+                    </compilerPlugins>
+                </configuration>
             </plugin>
         </plugins>
     </build>

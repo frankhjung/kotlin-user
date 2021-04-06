@@ -1,3 +1,6 @@
-*.swp
-pom.xml.bak
+*.class
 .idea/
+META-INF/
+pom.xml.bak
+*.swp
+target/

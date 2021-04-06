@@ -1,11 +1,15 @@
-# Module   consoleApp
+# Module    user
 
-Example to process command line arguments.
+Create a user id from a user name.
 
-# Package   com.marlo.args 
+# Package   console 
 
-Process command line arguments.
+Console program to create user id from a user name.
 
-# Package   com.marlo.console
+# Package   data
 
-Console program example.
+Functions for data access.
+
+# Package   repository
+
+Repository functions.

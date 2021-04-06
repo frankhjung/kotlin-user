@@ -38,4 +38,3 @@ jobs:
           build_dir: target/site
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
-

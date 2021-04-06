@@ -1,6 +1,25 @@
-# Kotlin Console Example
+# Simple Kotlin Application Example
 
 A simple console program example using Maven.
+
+## Objective
+
+This is a command line program that:
+
+* uses a command line argument to receive a username as a lower-case 
+  alphabetic string
+* if no username given a usage message should be provided
+* if an incorrect username is provided an error message should be reported
+* if a correct username is given then save it into a database and return the inserted id of the new user as a message
+* log the user id to a log file with ISO date
+
+Here we will use the H2 database.
+
+### References
+
+* [Kotlin Commandline parser kotlinx-cli ](https://github.com/Kotlin/kotlinx-cli)
+* [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)
+* [Kotlin JPA](https://www.baeldung.com/kotlin/jpa)
 
 ## Sort POM
 
@@ -50,13 +69,7 @@ mvn ktlint:check
 Run the application with:
 
 ```bash
-$ mvn exec:java -Dexec.args="one two three"
-...
-Got arguments:
-
-one
-two
-three
+$ mvn exec:java -Dexec.args="-v -u frank"
 ```
 
 ## Reports
@@ -73,7 +86,7 @@ Kotlin is similar to JavaDoc. It however doesn't support the same documentation
 annotations or build. Here we are using
 [Dokka](https://github.com/Kotlin/dokka).
 
-## References
+### References
 
 * [KDoc & Dokka](https://kotlinlang.org/docs/kotlin-doc.html)
 * [Dokka Maven Usage](https://kotlin.github.io/dokka/1.4.30/user_guide/maven/usage/)
