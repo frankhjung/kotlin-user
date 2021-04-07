@@ -6,7 +6,7 @@ A simple console program example using Maven.
 
 This is a command line program that:
 
-* uses a command line argument to receive a username as a lower-case 
+* uses a command line argument to receive a username as a lower-case
   alphabetic string
 * if no username given a usage message should be provided
 * if an incorrect username is provided an error message should be reported
@@ -18,8 +18,10 @@ Here we will use the H2 database.
 ### References
 
 * [Kotlin Commandline parser kotlinx-cli ](https://github.com/Kotlin/kotlinx-cli)
-* [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)
 * [Kotlin JPA](https://www.baeldung.com/kotlin/jpa)
+* [Kotlin Spring Boot application with H2 and JPA](https://code4spring.wordpress.com/2020/03/08/spring-boot-application-with-h2-and-jpa-using-kotlin-2/)
+* [Spring Boot H2 Database](https://www.baeldung.com/spring-boot-h2-database)
+* [kotlin-logging](https://github.com/MicroUtils/kotlin-logging)
 
 ## Sort POM
 
@@ -46,7 +48,7 @@ mvn com.github.gantsign.maven:ktlint-maven-plugin:1.8.0:format
 Or the short version which depends on [.m2/settings.xml](.m2/settings.xml)
 
 ```bash
-mvn ktlint:format
+mvn spotless:apply
 ```
 
 ## Lint Code

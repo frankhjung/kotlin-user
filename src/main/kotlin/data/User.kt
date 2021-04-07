@@ -5,13 +5,11 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
+@Table(name = "user")
 data class User(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
-    @Column(nullable = false)
-    val name: String
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int,
+    @Column(nullable = false) val name: String
 )

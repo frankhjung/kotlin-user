@@ -10,6 +10,6 @@ Console program to create user id from a user name.
 
 Functions for data access.
 
-# Package   repository
+# Package   domain.repository
 
 Repository functions.
