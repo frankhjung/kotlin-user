@@ -53,6 +53,11 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>1.4.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>1.4.32</version>
         </dependency>
@@ -63,8 +68,8 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -136,9 +141,11 @@
                                 <endWithNewline></endWithNewline>
                             </format>
                         </formats>
-                        <googleJavaFormat>
-                            <style>GOOGLE</style>
-                        </googleJavaFormat>
+                        <java>
+                            <googleJavaFormat>
+                                <style>GOOGLE</style>
+                            </googleJavaFormat>
+                        </java>
                         <kotlin>
                             <includes>
                                 <include>src/main/kotlin/**/*.kt</include>
@@ -296,10 +303,6 @@
             <plugin>
                 <groupId>org.jetbrains.dokka</groupId>
                 <artifactId>dokka-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>

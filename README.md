@@ -71,7 +71,7 @@ mvn ktlint:check
 Run the application with:
 
 ```bash
-$ mvn exec:java -Dexec.args="-v -u frank"
+mvn exec:java -Dexec.args='-u frank'
 ```
 
 ## Reports
