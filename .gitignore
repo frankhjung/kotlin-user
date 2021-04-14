@@ -1,5 +1,6 @@
 *.class
 .idea/
+*.log
 META-INF/
 pom.xml.bak
 *.swp
