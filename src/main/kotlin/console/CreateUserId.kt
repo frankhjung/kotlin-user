@@ -1,48 +1,32 @@
 package console
 
-import kotlin.system.exitProcess
+import data.User
+import data.addUser
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
+import java.util.function.Consumer
+import kotlin.system.exitProcess
 
-private val logger = mu.KotlinLogging.logger {}
+val logger = mu.KotlinLogging.logger {}
 
 /**
-   * Create a userid from a username. This writes the username to a database and returns the created
-   * user id.
-   * @param args command line arguments
-   */
-  fun main(args: Array<String>) {
-    val parser = ArgParser("CreateUser")
-    val username by parser
-        .option(ArgType.String, shortName = "u", description = "Username")
-        .required()
+ * Create a userid from a username. This writes the username to a database and returns the created
+ * user id.
+ * @param args command line arguments
+ */
+fun main(args: Array<String>) {
+  val parser = ArgParser("CreateUser")
+  val username by parser
+      .option(ArgType.String, shortName = "u", description = "Username")
+      .required()
 
-    parser.parse(args)
-    logger.info("Creating user $username ...")
+  // get username from commandline argument
+  parser.parse(args)
 
-    //  val sessionFactory: SessionFactory = Configuration().configure().buildSessionFactory()
-    //  sessionFactory.use { sf ->
-    //    persist(sf, username)
-    //    load(sf)
-    //  }
+  logger.info("Creating user $username ...")
+  val users: List<User> = addUser(username)
+  users.forEach(Consumer { u: User -> logger.info("Created user ${u.name} with id ${u.id}\n") })
 
-    exitProcess(0)
-  }
-
-  // fun persist(sessionFactory: SessionFactory, username: String) {
-  //  val user = User(0, username)
-  //  sessionFactory.openSession().apply {
-  //    this.beginTransaction()
-  //    this.persist(user)
-  //    transaction.commit()
-  //    println("Created user ${user.name} with id ${user.id}")
-  //  }
-  // }
-
-  // fun load(sessionFactory: SessionFactory) {
-  //  val session = sessionFactory.openSession()
-  //  val users: List<User> = session.createQuery("FROM user").list() as List<User>
-  //  users.forEach(Consumer { u: User -> println("Found user ${u.name} with id ${u.id}%n") })
-  //  session.close()
-  // }
+  exitProcess(0)
+}

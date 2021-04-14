@@ -1,15 +1,11 @@
 # Module    user
 
-Create a user id from a user name.
+Create a user id from a username.
 
 # Package   console 
 
-Console program to create user id from a user name.
+Console program to create user id from a username.
 
 # Package   data
 
 Functions for data access.
-
-# Package   domain.repository
-
-Repository functions.

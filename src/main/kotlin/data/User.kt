@@ -7,9 +7,9 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
 
-@Entity
+@Entity(name = "user")
 @Table(name = "user")
 data class User(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int,
-    @Column(nullable = false) val name: String
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id") val id: Int,
+    @Column(name = "name", nullable = false, unique = true) val name: String
 )
