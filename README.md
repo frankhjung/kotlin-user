@@ -4,6 +4,8 @@ A simple console program example using Maven.
 
 # TODO
 
+- [ ] using logging
+- [ ] fix [jacoco unit test coverage](https://kevcodez.de/posts/2018-08-19-test-coverage-in-kotlin-with-jacoco/)
 - [ ] [format XML using spotless](https://github.com/diffplug/spotless/blob/main/plugin-maven/README.md)
 
 ## Objective
