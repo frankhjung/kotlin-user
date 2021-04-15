@@ -1,25 +1,29 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <configuration>
 
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss}] [%thread] [%-5p] %logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="file" class="ch.qos.logback.core.FileAppender">
         <file>users.log</file>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
+            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss}] [%thread] [%-5p] %logger{36} %msg%n</pattern>
+            <!-- java default
             <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
+            -->
         </encoder>
     </appender>
 
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
-        </encoder>
-    </appender>
-
-    <logger name="org.hibernate.type" level="all" />
+    <logger name="org.hibernate.type" level="info" />
     <logger name="org.hibernate" level="info" />
 
     <root level="info">
+        <appender-ref ref="console"/>
         <appender-ref ref="file"/>
         <!-- can have more than one appender:
         <appender-ref ref="console"/>

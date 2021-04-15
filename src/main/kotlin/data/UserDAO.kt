@@ -4,7 +4,9 @@ import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
 
-private val sessionFactory: SessionFactory = getSessionFactoryFromConfig()
+val logger = mu.KotlinLogging.logger {}
+
+val sessionFactory: SessionFactory = getSessionFactoryFromConfig()
 
 /**
  * Get session factory from hibernate configuration.
@@ -22,6 +24,7 @@ fun getSessionFactoryFromConfig(): SessionFactory {
  */
 fun addUser(username: String): List<User> {
   if (!isValidUsername(username)) {
+    logger.error("Username must be lowercase alphabetic")
     throw IllegalArgumentException("Username must be lowercase alphabetic")
   }
   sessionFactory.use { factory ->
@@ -55,7 +58,7 @@ fun saveUser(session: Session, username: String) {
   session.apply { this.persist(user) }
 }
 
-/** Convert typed list. */
+/** Convert typed list. If not values, return an empty list rather than a null. */
 @Suppress("UNCHECKED_CAST")
 private inline fun <reified T> List<*>.asListOfType(): List<T> =
     if (all { it is T }) this as List<T> else emptyList()

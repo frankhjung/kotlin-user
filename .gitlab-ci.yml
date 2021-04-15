@@ -18,6 +18,7 @@ build:
     MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
   script:
     - mvn clean install
+    - mvn exec:java -Dexec.args='-u frank'
   artifacts:
     paths:
       - target

@@ -8,6 +8,7 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
 
+/** Logger for project. */
 val logger = mu.KotlinLogging.logger {}
 
 /**

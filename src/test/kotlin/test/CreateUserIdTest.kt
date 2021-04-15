@@ -13,6 +13,9 @@ import org.hibernate.testing.transaction.TransactionUtil.doInHibernate
 
 class CreateUserIdTest {
 
+  /** Logger for tests. */
+  val logger = mu.KotlinLogging.logger {}
+
   @Test
   internal fun givenValidUser_haveTrue() {
     assertTrue(isValidUsername("frank"))
