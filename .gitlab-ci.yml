@@ -1,50 +1,38 @@
 ---
 
-image: maven:3.6-jdk-11
-
-cache:
-  paths:
-    - .m2/domain.repository/
-
 stages:
   - build
   - deploy
-  - release
 
-variables:
-  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/domain.repository"
+cache:
+  paths:
+    - .m2/repository/
 
 build:
   stage: build
+  image: maven:3.6.3-jdk-11-slim
+  except:
+    - tags
+  variables:
+    MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+    MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
+  script:
+    - mvn clean install
   artifacts:
     paths:
-      - target/
-  script:
-    - mvn $MAVEN_CLI_OPTS clean site
+      - target
 
 pages:
   stage: deploy
-  dependencies:
-    - build
+  image: alpine
+  only:
+    refs:
+      - master
+  except:
+    - tags
   script:
     - mv target/site public
   artifacts:
     paths:
-      - public/
+      - public
       - target/*.jar
-  tags:
-    - gitlab-org
-
-release:
-  stage: release
-  except:
-    refs:
-      - tags
-  only:
-    refs:
-      - master
-  script:
-    - POM_VERSION=$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)
-    - mvn versions:set -DnewVersion=${POM_VERSION}-${CI_COMMIT_SHORT_SHA}
-    - mvn $MAVEN_CLI_OPTS $MAVEN_VSN_OPTS -Dmaven.test.skip=true deploy
