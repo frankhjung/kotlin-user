@@ -1,10 +1,11 @@
 package data
 
+import mu.KotlinLogging
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
 
-val logger = mu.KotlinLogging.logger {}
+private val logger = KotlinLogging.logger {}
 
 val sessionFactory: SessionFactory = getSessionFactoryFromConfig()
 
@@ -19,18 +20,35 @@ fun getSessionFactoryFromConfig(): SessionFactory {
 
 /**
  * Add a user to h2 database by name.
- * @param username the user to add
- * @return List<User> a list of users
+ * @param usernames the user to add
+ * @return List<User> a list of users that were persisted or an empty list
  */
-fun addUser(username: String): List<User> {
-  sessionFactory.use { factory ->
+fun addUsers(usernames: List<String>): List<User> {
+  return if (usernames.isNotEmpty()) {
+    addAllUsers(usernames)
+  } else {
+    logger.warn("No users to add. Ignoring.")
+    emptyList()
+  }
+}
+
+/**
+ * Only add uses for non-empty list
+ * @param usernames the non-empty list of users to add
+ * @return List<User> the list of user objects that were persisted
+ */
+private fun addAllUsers(usernames: List<String>): List<User> {
+  return sessionFactory.use { factory ->
     val session = factory.openSession()
     session.beginTransaction()
-    saveUser(session, username)
-    session.transaction.commit()
+    usernames.forEach { username ->
+      logger.info("Adding user $username ...")
+      saveUser(session, username)
+    }
     val users = getUsers(session)
+    session.transaction.commit()
     session.close()
-    return users
+    users
   }
 }
 
@@ -40,10 +58,7 @@ fun addUser(username: String): List<User> {
  * @param username the username to persist to database
  */
 fun saveUser(session: Session, username: String) {
-  val user =
-      User(
-          username,
-      )
+  val user = User(username)
   session.apply { this.persist(user) }
 }
 

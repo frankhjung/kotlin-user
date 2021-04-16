@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>frankhjung</groupId>
-    <artifactId>create-user-id</artifactId>
+    <artifactId>create-user-ids</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>createUserId</name>
+    <name>CreateUserIds</name>
     <description>Small Kotlin project example</description>
     <url>https://github.com/frankhjung/kotlin-user/blob/master/README.md</url>
     <developers>
@@ -178,8 +178,8 @@
                                     <include>*.md</include>
                                     <include>.gitignore</include>
                                 </includes>
-                                <trimTrailingWhitespace></trimTrailingWhitespace>
-                                <endWithNewline></endWithNewline>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                             </format>
                         </formats>
                         <java>
@@ -215,6 +215,7 @@
                         <sortPlugins>groupId,artifactId</sortPlugins>
                         <sortProperties>true</sortProperties>
                         <encoding>${project.build.sourceEncoding}</encoding>
+                        <expandEmptyElements>false</expandEmptyElements>
                         <createBackupFile>false</createBackupFile>
                         <ignoreLineSeparators>false</ignoreLineSeparators>
                         <nrOfIndentSpace>4</nrOfIndentSpace>
@@ -257,7 +258,7 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.6.0</version>
                     <configuration>
-                        <mainClass>console.CreateUserIdKt</mainClass>
+                        <mainClass>console.MainKt</mainClass>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -397,13 +398,15 @@
                                 <rule>
                                     <element>CLASS</element>
                                     <excludes>
-                                        <exclude>${project.groupId}.${project.artifactId}.Main</exclude>
+                                        <exclude>console.MainKt*</exclude>
+                                        <exclude>data.UserDAOKt.logger*</exclude>
+                                        <exclude>test.*Test*</exclude>
                                     </excludes>
                                     <limits>
                                         <limit>
-                                            <counter>COMPLEXITY</counter>
+                                            <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <!-- <minimum>50%</minimum> -->
+                                            <minimum>85%</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -432,6 +435,13 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>

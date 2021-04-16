@@ -1,0 +1,13 @@
+Project Reports
+
+    This document provides an overview of the various generated reports.
+    Each report is briefly described below.
+
+* Overview
+
+~~reports table
+*-----+------+
+ {{{./jacoco/index.html}JaCoCo}} | JaCoCo Coverage Report.
+*-----+------+
+ {{{./dokka/index.html}KDocs}} | Kotlin API documentation.
+*-----+------+

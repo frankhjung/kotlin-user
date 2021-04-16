@@ -14,7 +14,7 @@
                 <item name="Team" href="team.html" />
             </item>
             <item name="Project Reports" href="project-reports.html" collapse="true">
-                <item name="Jacoco" href="jacoco-aggregate/index.html" />
+                <item name="Jacoco" href="jacoco/index.html" />
                 <item name="KDoc" href="dokka/index.html" />
             </item>
         </menu>

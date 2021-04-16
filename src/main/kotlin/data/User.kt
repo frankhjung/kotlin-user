@@ -18,7 +18,6 @@ data class User(
   /** Check name is lowercase alphabetic. */
   init {
     require(isValidName(name)) { "Only lowercase alphabetic characters allowed" }
-    // require(id >= 0) { "Only non-negative integers allowed" }
   }
 
   operator fun component2() = this.id

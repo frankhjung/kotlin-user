@@ -1,15 +1,16 @@
 package console
 
 import data.User
-import data.addUser
+import data.addUsers
 import java.util.function.Consumer
 import kotlin.system.exitProcess
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
-import kotlinx.cli.required
+import kotlinx.cli.vararg
+import mu.KotlinLogging
 
 /** Logger for project. */
-val logger = mu.KotlinLogging.logger {}
+private val logger = KotlinLogging.logger {}
 
 /**
  * Create a userid from a username. This writes the username to a database and returns the created
@@ -17,16 +18,13 @@ val logger = mu.KotlinLogging.logger {}
  * @param args command line arguments
  */
 fun main(args: Array<String>) {
-  val parser = ArgParser("CreateUser")
-  val username by parser
-      .option(ArgType.String, shortName = "u", description = "Username")
-      .required()
+  val parser = ArgParser("CreateUserIds")
+  val usernames by parser.argument(ArgType.String, description = "username1 username2 ...").vararg()
 
   // get username from commandline argument
   parser.parse(args)
 
-  logger.info("Creating user $username ...")
-  val users: List<User> = addUser(username)
+  val users: List<User> = addUsers(usernames)
   users.forEach(Consumer { u: User -> logger.info("Created user ${u.name} with id ${u.id}\n") })
 
   exitProcess(0)

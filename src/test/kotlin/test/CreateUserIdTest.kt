@@ -1,29 +1,34 @@
 package test
 
 import data.User
-import data.addUser
+import data.addUsers
 import data.getSessionFactoryFromConfig
 import data.getUsers
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import mu.KotlinLogging
 import org.hibernate.testing.transaction.TransactionUtil.doInHibernate
 import org.junit.jupiter.api.assertThrows
+
+private val logger = KotlinLogging.logger {}
 
 class CreateUserIdTest {
 
   companion object {
-    const val BAD_NAME = "EVIL"
-    const val GOOD_NAME = "good"
+    const val BAD_NAME = "BaD_nAmE"
+    const val GOOD_NAME = "goodname"
   }
 
   @Test
   fun isInvalidName() {
+    logger.debug("check $BAD_NAME is invalid")
     assertThrows<IllegalArgumentException> { User(BAD_NAME) }
   }
 
   @Test
-  fun addUser_thenFound() {
-    val users: List<User> = addUser(GOOD_NAME)
+  fun addSingleUserThenFound() {
+    logger.debug("add single user ${GOOD_NAME}NAME")
+    val users: List<User> = addUsers(listOf(GOOD_NAME))
     assertEquals(1, users.size)
     val (name, id) = users[0]
     assertEquals(1, id)
@@ -31,7 +36,15 @@ class CreateUserIdTest {
   }
 
   @Test
-  fun saveUser_thenFound() {
+  fun addEmptyListOfUsers() {
+    logger.debug("no failure when given an empty list")
+    val users: List<User> = addUsers(emptyList())
+    assertEquals(0, users.size)
+  }
+
+  @Test
+  fun saveUserThenFound() {
+    logger.debug("save user and then retrieve")
     val sessionFactory = getSessionFactoryFromConfig()
     doInHibernate(({ sessionFactory })) { session ->
       val userToSave = User(GOOD_NAME)
@@ -44,7 +57,8 @@ class CreateUserIdTest {
   }
 
   @Test
-  fun empty_list() {
+  fun getWhenEmptyDatabase() {
+    logger.debug("no failure when database is empty")
     val sessionFactory = getSessionFactoryFromConfig()
     doInHibernate(({ sessionFactory })) { session ->
       val users = getUsers(session)
