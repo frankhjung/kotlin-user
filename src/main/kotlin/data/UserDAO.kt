@@ -23,10 +23,6 @@ fun getSessionFactoryFromConfig(): SessionFactory {
  * @return List<User> a list of users
  */
 fun addUser(username: String): List<User> {
-  if (!isValidUsername(username)) {
-    logger.error("Username must be lowercase alphabetic")
-    throw IllegalArgumentException("Username must be lowercase alphabetic")
-  }
   sessionFactory.use { factory ->
     val session = factory.openSession()
     session.beginTransaction()
@@ -39,22 +35,15 @@ fun addUser(username: String): List<User> {
 }
 
 /**
- * Check username is only alphabetic.
- * @param username the username to check
- * @return True if username correct, False otherwise
- */
-fun isValidUsername(username: String): Boolean {
-  val regex = "^[a-z]+$".toRegex()
-  return regex.containsMatchIn(username)
-}
-
-/**
  * Save username to database.
  * @param session the open session to use
  * @param username the username to persist to database
  */
 fun saveUser(session: Session, username: String) {
-  val user = User(0, username)
+  val user =
+      User(
+          username,
+      )
   session.apply { this.persist(user) }
 }
 

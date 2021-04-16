@@ -4,46 +4,37 @@ import data.User
 import data.addUser
 import data.getSessionFactoryFromConfig
 import data.getUsers
-import data.isValidUsername
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 import org.hibernate.testing.transaction.TransactionUtil.doInHibernate
+import org.junit.jupiter.api.assertThrows
 
 class CreateUserIdTest {
 
-  /** Logger for tests. */
-  val logger = mu.KotlinLogging.logger {}
-
-  @Test
-  internal fun givenValidUser_haveTrue() {
-    assertTrue(isValidUsername("frank"))
+  companion object {
+    const val BAD_NAME = "EVIL"
+    const val GOOD_NAME = "good"
   }
 
   @Test
-  internal fun givenInValidUser_haveFalse() {
-    assertFalse(isValidUsername("FRANK"))
+  fun isInvalidName() {
+    assertThrows<IllegalArgumentException> { User(BAD_NAME) }
   }
 
   @Test
-  internal fun givenUser_haveId() {
-    val user = User(0, "frank")
-    assertEquals(0, user.id)
-  }
-
-  @Test
-  internal fun addUser_thenFound() {
-    val users = addUser("frank")
+  fun addUser_thenFound() {
+    val users: List<User> = addUser(GOOD_NAME)
     assertEquals(1, users.size)
-    assertEquals("frank", users[0].name)
+    val (name, id) = users[0]
+    assertEquals(1, id)
+    assertEquals(GOOD_NAME, name)
   }
 
   @Test
-  internal fun saveUser_thenFound() {
+  fun saveUser_thenFound() {
     val sessionFactory = getSessionFactoryFromConfig()
     doInHibernate(({ sessionFactory })) { session ->
-      val userToSave = User(0, "frank")
+      val userToSave = User(GOOD_NAME)
       session.persist(userToSave)
       val userFound = session.find(User::class.java, userToSave.id)
       session.refresh(userFound)
@@ -53,7 +44,7 @@ class CreateUserIdTest {
   }
 
   @Test
-  internal fun empty_list() {
+  fun empty_list() {
     val sessionFactory = getSessionFactoryFromConfig()
     doInHibernate(({ sessionFactory })) { session ->
       val users = getUsers(session)
