@@ -18,14 +18,17 @@ private val logger = KotlinLogging.logger {}
  * @param args command line arguments
  */
 fun main(args: Array<String>) {
+
+  // define parser
   val parser = ArgParser("CreateUserIds")
   val usernames by parser.argument(ArgType.String, description = "username1 username2 ...").vararg()
 
   // get username from commandline argument
   parser.parse(args)
 
+  // process list (could be empty) of users to create
   val users: List<User> = addUsers(usernames)
-  users.forEach(Consumer { u: User -> logger.info("Created user ${u.name} with id ${u.id}\n") })
+  users.forEach(Consumer { u: User -> logger.info("Created user ${u.name} with id ${u.id}") })
 
   exitProcess(0)
 }

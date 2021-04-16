@@ -4,9 +4,9 @@ A simple console program example using Maven.
 
 # TODO
 
-- [ ] using logging
-- [ ] fix [jacoco unit test coverage](https://kevcodez.de/posts/2018-08-19-test-coverage-in-kotlin-with-jacoco/)
 - [ ] [format XML using spotless](https://github.com/diffplug/spotless/blob/main/plugin-maven/README.md)
+- [ ] refactor to use spring boot
+- [ ] refactor to use repository & DAO patterns
 
 ## Objective
 
@@ -69,7 +69,7 @@ See also configuration in [pom.xml](pom.xml).
 Run the application with:
 
 ```bash
-mvn exec:java -Dexec.args='-u frank'
+mvn exec:java -Dexec.args='java kotlin haskell'
 mvn exec:java -Dexec.args='-h'
 ```
 
@@ -78,9 +78,10 @@ mvn exec:java -Dexec.args='-h'
 ```text
 $ mvn exec:java -Dexec.args='-h'
 
-Usage: CreateUser options_list
+Usage: CreateUserIds options_list
+Arguments:
+    usernames -> username1 username2 ... { String }
 Options:
-    --username, -u -> Username (always required) { String }
     --help, -h -> Usage info
 ```
 
