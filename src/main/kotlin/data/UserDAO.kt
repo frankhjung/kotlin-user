@@ -13,7 +13,7 @@ val sessionFactory: SessionFactory = getSessionFactoryFromConfig()
  * Get session factory from hibernate configuration.
  * @return SessionFactory the session factory
  */
-fun getSessionFactoryFromConfig(): SessionFactory {
+internal fun getSessionFactoryFromConfig(): SessionFactory {
   val config = Configuration().configure()
   return config.buildSessionFactory()
 }
@@ -38,18 +38,16 @@ fun addUsers(usernames: List<String>): List<User> {
  * @return List<User> the list of user objects that were persisted
  */
 private fun addAllUsers(usernames: List<String>): List<User> {
-  return sessionFactory.use { factory ->
-    val session = factory.openSession()
-    session.beginTransaction()
-    usernames.forEach { username ->
-      logger.info("Adding user $username ...")
-      saveUser(session, username)
-    }
-    val users = getUsers(session)
-    session.transaction.commit()
-    session.close()
-    users
+  val session = getSessionFactoryFromConfig().openSession()
+  session.beginTransaction()
+  usernames.forEach { username ->
+    logger.info("Adding user $username ...")
+    saveUser(session, username)
   }
+  val users = getUsers(session)
+  session.transaction.commit()
+  session.close()
+  return users
 }
 
 /**

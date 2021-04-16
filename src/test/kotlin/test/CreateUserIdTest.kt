@@ -15,8 +15,9 @@ private val logger = KotlinLogging.logger {}
 class CreateUserIdTest {
 
   companion object {
-    const val BAD_NAME = "BaD_nAmE"
-    const val GOOD_NAME = "goodname"
+    const val BAD_NAME = "JavaScript"
+    const val GOOD_NAME = "java"
+    val LIST_NAMES = listOf("haskell", "kotlin", "clojure")
   }
 
   @Test
@@ -27,12 +28,23 @@ class CreateUserIdTest {
 
   @Test
   fun addSingleUserThenFound() {
-    logger.debug("add single user ${GOOD_NAME}NAME")
+    logger.debug("add single user $GOOD_NAME")
     val users: List<User> = addUsers(listOf(GOOD_NAME))
     assertEquals(1, users.size)
     val (name, id) = users[0]
     assertEquals(1, id)
     assertEquals(GOOD_NAME, name)
+  }
+
+  @Test
+  fun addMultiUserThenFound() {
+    logger.debug("add multiple users $LIST_NAMES")
+    val users: List<User> = addUsers(LIST_NAMES)
+    assertEquals(LIST_NAMES.size, users.size)
+    // test first user
+    val (name, id) = users[0]
+    assertEquals(1, id)
+    assertEquals(LIST_NAMES[0], name)
   }
 
   @Test
