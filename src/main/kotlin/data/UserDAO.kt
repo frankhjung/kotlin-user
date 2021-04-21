@@ -33,7 +33,7 @@ fun addUsers(usernames: List<String>): List<User> {
 }
 
 /**
- * Only add uses for non-empty list
+ * Only add uses for non-empty list.
  * @param usernames the non-empty list of users to add
  * @return List<User> the list of user objects that were persisted
  */
