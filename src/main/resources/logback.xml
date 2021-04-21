@@ -19,15 +19,16 @@
         </encoder>
     </appender>
 
-    <logger name="org.hibernate.type" level="info" />
-    <logger name="org.hibernate" level="info" />
-
-    <root level="info">
-        <appender-ref ref="console"/>
-        <appender-ref ref="file"/>
+    <root>
+        <appender-ref ref="console" level="INFO"/>
+        <appender-ref ref="file" level="WARN"/>
         <!-- can have more than one appender:
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
         -->
     </root>
+
+    <logger name="org.hibernate" level="INFO">
+        <appender-ref ref="file" />
+    </logger>
 </configuration>
