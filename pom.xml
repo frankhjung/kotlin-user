@@ -399,7 +399,8 @@
                                     <element>CLASS</element>
                                     <excludes>
                                         <exclude>console.MainKt*</exclude>
-                                        <exclude>test.*Test*</exclude>
+                                        <exclude>data.UserDAOKt*</exclude>
+                                        <exclude>test.*Test</exclude>
                                     </excludes>
                                     <limits>
                                         <limit>

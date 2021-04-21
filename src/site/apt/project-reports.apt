@@ -7,7 +7,7 @@ Project Reports
 
 ~~reports table
 *-----+------+
- {{{./jacoco/index.html}JaCoCo}} | JaCoCo Coverage Report.
+  {{{./jacoco/index.html}Jacoco}} | JaCoCo Coverage Report.
 *-----+------+
- {{{./dokka/index.html}KDocs}} | Kotlin API documentation.
+  {{{./dokka/index.html}KDoc}} | Kotlin API documentation.
 *-----+------+
