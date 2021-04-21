@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>frankhjung</groupId>
-    <artifactId>create-user-ids</artifactId>
+    <artifactId>user-app</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>CreateUserIds</name>
-    <description>Small Kotlin project example</description>
+    <name>user</name>
+    <description>Kotlin JPA and Hibernate example</description>
     <url>https://github.com/frankhjung/kotlin-user/blob/master/README.md</url>
     <developers>
         <developer>
@@ -39,6 +39,7 @@
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin.version>1.4.32</kotlin.version>
         <plugin.jacoco.version>0.8.5</plugin.jacoco.version>
+        <plugin.junit-jupiter.version>5.7.1</plugin.junit-jupiter.version>
         <plugin.maven-project-info-reports.version>3.1.1</plugin.maven-project-info-reports.version>
         <plugin.sortpom.version>2.15.0</plugin.sortpom.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -125,13 +126,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.7.1</version>
+            <version>${plugin.junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.7.1</version>
+            <version>${plugin.junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -397,8 +398,6 @@
                                 <rule>
                                     <element>CLASS</element>
                                     <excludes>
-                                        <exclude>console.MainKt*</exclude>
-                                        <exclude>data.UserDAOKt.logger*</exclude>
                                         <exclude>test.*Test*</exclude>
                                     </excludes>
                                     <limits>
