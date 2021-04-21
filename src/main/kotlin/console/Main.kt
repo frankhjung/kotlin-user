@@ -2,12 +2,12 @@ package console
 
 import data.User
 import data.addUsers
-import java.util.function.Consumer
-import kotlin.system.exitProcess
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.vararg
 import mu.KotlinLogging
+import java.util.function.Consumer
+import kotlin.system.exitProcess
 
 /** Logger for project. */
 private val logger = KotlinLogging.logger {}
@@ -20,7 +20,7 @@ private val logger = KotlinLogging.logger {}
 fun main(args: Array<String>) {
 
   // define parser
-  val parser = ArgParser("CreateUserIds")
+  val parser = ArgParser("user-app")
   val usernames by parser.argument(ArgType.String, description = "username1 username2 ...").vararg()
 
   // get username from commandline argument

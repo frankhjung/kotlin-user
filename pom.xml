@@ -398,6 +398,7 @@
                                 <rule>
                                     <element>CLASS</element>
                                     <excludes>
+                                        <exclude>console.MainKt*</exclude>
                                         <exclude>test.*Test*</exclude>
                                     </excludes>
                                     <limits>
