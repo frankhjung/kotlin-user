@@ -1,0 +1,20 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:console////PointingToDeclaration/user-app/console/index.html
+$dokka.location:console/MainKt///PointingToDeclaration/user-app/console/-main-kt/index.html
+$dokka.location:console/MainKt/main/#kotlin.Array[kotlin.String]/PointingToDeclaration/user-app/console/-main-kt/main.html
+$dokka.location:data////PointingToDeclaration/user-app/data/index.html
+$dokka.location:data/User///PointingToDeclaration/user-app/data/-user/index.html
+$dokka.location:data/User/User/#kotlin.String/PointingToDeclaration/user-app/data/-user/-user.html
+$dokka.location:data/User/component2/#/PointingToDeclaration/user-app/data/-user/component2.html
+$dokka.location:data/User/getId/#/PointingToDeclaration/user-app/data/-user/get-id.html
+$dokka.location:data/User/getName/#/PointingToDeclaration/user-app/data/-user/get-name.html
+$dokka.location:data/User/setId/#kotlin.Int/PointingToDeclaration/user-app/data/-user/set-id.html
+$dokka.location:data/UserDAOKt///PointingToDeclaration/user-app/data/-user-d-a-o-kt/index.html
+$dokka.location:data/UserDAOKt/addUsers/#kotlin.collections.List[kotlin.String]/PointingToDeclaration/user-app/data/-user-d-a-o-kt/add-users.html
+$dokka.location:data/UserDAOKt/getSessionFactory/#/PointingToDeclaration/user-app/data/-user-d-a-o-kt/get-session-factory.html
+$dokka.location:data/UserDAOKt/getUsers/#org.hibernate.Session/PointingToDeclaration/user-app/data/-user-d-a-o-kt/get-users.html
+$dokka.location:data/UserDAOKt/saveUser/#org.hibernate.Session#kotlin.String/PointingToDeclaration/user-app/data/-user-d-a-o-kt/save-user.html
+console
+data
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user</a> &gt; <a href="index.source.html" class="el_package">console</a> &gt; <span class="el_source">Main.kt</span></div><h1>Main.kt</h1><pre class="source lang-java linenums">package console
+
+import data.User
+import data.addUsers
+import java.util.function.Consumer
+import kotlin.system.exitProcess
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ArgType
+import kotlinx.cli.vararg
+import mu.KotlinLogging
+
+/** Logger for project. */
+<span class="nc" id="L13">private val logger = KotlinLogging.logger {}</span>
+
+/**
+ * Create a userid from a username. This writes the username to a database and returns the created
+ * user id.
+ * @param args command line arguments
+ */
+fun main(args: Array&lt;String&gt;) {
+
+  // define parser
+<span class="nc" id="L23">  val parser = ArgParser(&quot;user-app&quot;)</span>
+<span class="nc" id="L24">  val usernames by parser.argument(ArgType.String, description = &quot;username1 username2 ...&quot;).vararg()</span>
+
+  // get username from commandline argument
+<span class="nc" id="L27">  parser.parse(args)</span>
+
+  // process list (could be empty) of users to create
+<span class="nc" id="L30">  val users = addUsers(usernames)</span>
+<span class="nc" id="L31">  users.forEach(Consumer { u: User -&gt; logger.info(&quot;Created user \&quot;${u.name}\&quot; with id ${u.id}&quot;) })</span>
+<span class="nc" id="L32">  logger.info(&quot;Added ${users.size} users to database&quot;)</span>
+
+<span class="nc" id="L34">  exitProcess(0)</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

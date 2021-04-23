@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDAO.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">UserDAO.kt</span></div><h1>UserDAO.kt</h1><pre class="source lang-java linenums">package data
+
+import mu.KotlinLogging
+import org.hibernate.Session
+import org.hibernate.SessionFactory
+import org.hibernate.cfg.Configuration
+
+<span class="pc" id="L8">private val logger = KotlinLogging.logger {}</span>
+
+<span class="pc" id="L10">val sessionFactory: SessionFactory = getSessionFactoryFromConfig()</span>
+
+/**
+ * Get session factory from hibernate configuration.
+ * @return SessionFactory the session factory
+ */
+internal fun getSessionFactoryFromConfig(): SessionFactory {
+<span class="fc" id="L17">  val config = Configuration().configure()</span>
+<span class="fc" id="L18">  return config.buildSessionFactory()</span>
+}
+
+/**
+ * Add a user to h2 database by name.
+ * @param usernames the user to add
+ * @return List&lt;User&gt; a list of users that were persisted or an empty list
+ */
+fun addUsers(usernames: List&lt;String&gt;): List&lt;User&gt; {
+<span class="fc bfc" id="L27" title="All 4 branches covered.">  return if (usernames.isNotEmpty()) {</span>
+<span class="fc" id="L28">    addAllUsers(usernames)</span>
+  } else {
+<span class="fc" id="L30">    logger.warn(&quot;No users to add. Ignoring.&quot;)</span>
+<span class="fc" id="L31">    emptyList()</span>
+  }
+}
+
+/**
+ * Only add uses for non-empty list.
+ * @param usernames the non-empty list of users to add
+ * @return List&lt;User&gt; the list of user objects that were persisted
+ */
+private fun addAllUsers(usernames: List&lt;String&gt;): List&lt;User&gt; {
+<span class="fc" id="L41">  val session = getSessionFactoryFromConfig().openSession()</span>
+<span class="fc" id="L42">  session.beginTransaction()</span>
+<span class="fc" id="L43">  usernames.forEach { username -&gt;</span>
+<span class="fc" id="L44">    logger.info(&quot;Adding user $username ...&quot;)</span>
+<span class="fc" id="L45">    saveUser(session, username)</span>
+<span class="fc" id="L46">  }</span>
+<span class="fc" id="L47">  val users = getUsers(session)</span>
+<span class="fc" id="L48">  session.transaction.commit()</span>
+<span class="fc" id="L49">  session.close()</span>
+<span class="fc" id="L50">  return users</span>
+}
+
+/**
+ * Save username to database.
+ * @param session the open session to use
+ * @param username the username to persist to database
+ */
+fun saveUser(session: Session, username: String) {
+<span class="fc" id="L59">  val user = User(username)</span>
+<span class="fc" id="L60">  session.apply { this.persist(user) }</span>
+<span class="fc" id="L61">}</span>
+
+/** Convert typed list. If not values, return an empty list rather than a null. */
+@Suppress(&quot;UNCHECKED_CAST&quot;)
+private inline fun &lt;reified T&gt; List&lt;*&gt;.asListOfType(): List&lt;T&gt; =
+    if (all { it is T }) this as List&lt;T&gt; else emptyList()
+
+/**
+ * Get a list of all users from the database.
+ * @param session the open session to use
+ * @return List&lt;User&gt; a list of users or an empty list if none found
+ */
+fun getUsers(session: Session): List&lt;User&gt; {
+<span class="fc" id="L74">  val results = session.createQuery(&quot;FROM user&quot;).list()</span>
+<span class="fc" id="L75">  return results.asListOfType()</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">User.kt</span></div><h1>User.kt</h1><pre class="source lang-java linenums">package data
+
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
+
+/**
+ * A simple User data structure. Contains two fields:
+ * @param name the username to persist
+ * @property id the auto-generated user identifier
+ */
+@Entity(name = &quot;user&quot;)
+@Table(name = &quot;user&quot;)
+<span class="fc" id="L17">data class User(</span>
+<span class="nc" id="L18">    @Column(name = &quot;name&quot;, nullable = false, unique = true) val name: String,</span>
+) {
+
+  /** Auto-generated user identifier. */
+<span class="pc" id="L22">  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = &quot;id&quot;) var id: Int = 0</span>
+
+  /** Check name is lowercase alphabetic. */
+<span class="fc" id="L25">  init {</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    require(isValidName(name)) { &quot;Only lowercase alphabetic characters allowed&quot; }</span>
+<span class="fc" id="L27">  }</span>
+
+  /** Define id as the second component. */
+<span class="fc" id="L30">  operator fun component2() = this.id</span>
+
+  /**
+   * Name validation.
+   * @param name the user name to check
+   * @return Boolean True if user name is valid, False otherwise.
+   */
+<span class="fc" id="L37">  private fun isValidName(name: String): Boolean = name.matches(&quot;[a-z]+&quot;.toRegex())</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

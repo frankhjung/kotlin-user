@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+user,console,MainKt.logger.new Function0() {...},1,0,0,0,1,0,1,0,1,0
+user,console,MainKt,93,0,0,0,8,0,2,0,2,0
+user,console,MainKt.main.new Consumer() {...},20,0,0,0,1,0,1,0,1,0
+user,data,User,7,54,0,2,1,7,2,5,2,4
+user,data,UserDAOKt.logger.new Function0() {...},1,0,0,0,1,0,1,0,1,0
+user,data,UserDAOKt,2,126,0,4,0,23,1,8,1,6
