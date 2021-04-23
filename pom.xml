@@ -19,7 +19,10 @@
             <roles>
                 <role>consultant</role>
             </roles>
-            <timezone>+10</timezone>
+            <timezone>Australia/Melbourne</timezone>
+            <properties>
+                <picUrl>http://2.gravatar.com/avatar/84b4cc34429fbb55d925679efa9a8c30</picUrl>
+            </properties>
         </developer>
     </developers>
     <scm>
@@ -34,7 +37,7 @@
         </site>
     </distributionManagement>
     <properties>
-        <additionalparam>-Xdoclint:none</additionalparam>
+        <java.version>11</java.version>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin.version>1.4.32</kotlin.version>
